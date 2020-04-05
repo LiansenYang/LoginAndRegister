@@ -1,7 +1,41 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" 
+         id="WebApp_ID" version="3.1">
+  <display-name>LoginAndRegister</display-name>
   <display-name>Archetype Created Web Application</display-name>
+  <!-- 配置spring -->
+  <!-- 配置启动 Spring IOC 容器的 Listener -->
+	<!-- needed for ContextLoaderListener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:beans.xml</param-value>
+	</context-param>
+
+	<!-- Bootstraps the root web application context before servlet initialization -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+  
+  <!-- 配置 springMVc DispatcherServlet -->
+  <servlet>
+  	<servlet-name>DispatcherServlet</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<init-param>
+	  	<!-- 指定SpringMVC配置文件 -->
+	  	<param-name>contextConfigLocation</param-name>
+	  	<param-value>classpath:springMvc.xml</param-value>
+  	</init-param>
+	</servlet>
+	<servlet-mapping>
+	<!-- 设置http请求拦截，如*.do，这里设置的是拦截所有 -->
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
