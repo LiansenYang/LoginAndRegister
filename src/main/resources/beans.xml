@@ -32,16 +32,17 @@
     -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.yangLs.model"/>
+        <property name="typeAliasesPackage" value="com.yangLs.model,com.yangLs.model.exp"/>
         <!--如果Mapper.xml与Mapper.class在同一个包下且同名，spring扫描Mapper.class的同时会自动扫描同名的Mapper.xml并装配到Mapper.class
             如果Mapper.xml与Mapper.class不在同一个包下或者不同名，就必须使用配置mapperLocations指定mapper.xml的位置。
         -->
-        <property name="mapperLocations" value="classpath:com/yangLs/Mapper/*.xml"/>
-<!--         <property name="mapperLocations" value="classpath:com.yangLs.Mapper/*.xml"> -->
-<!--         	<array> -->
-<!--         		<value>classpath:com.yangLs.Mapper/*.xml</value> -->
-<!--         	</array> -->
-<!--         </property> -->
+<!--         <property name="mapperLocations" value="classpath:com/yangLs/Mapper/*.xml"/> -->
+        <property name="mapperLocations">
+        	<array>
+        		<value>classpath:com/yangLs/Mapper/*.xml</value>
+        		<value>classpath:com/yangLs/Mapper/exp/*.xml</value>
+        	</array>
+        </property>
     </bean>
 
     <!--
@@ -49,7 +50,7 @@
             sqlSessionFactory / basePackage
     -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.yangLs.dao"/>
+        <property name="basePackage" value="com.yangLs.dao,com.yangLs.dao.exp"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 

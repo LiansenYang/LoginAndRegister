@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yangLs.dao.exp.UserMapperExp">
+  <resultMap id="BaseResultMap" type="com.yangLs.model.exp.UserExp">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <collection property="roles" ofType="com.yangLs.model.Role">
+    	<id column="roleId" jdbcType="INTEGER" property="roleid" />
+    	<result column="roleName" jdbcType="VARCHAR" property="rolename" />
+    </collection>
+  </resultMap>
+  <select id="selectUserAndRoleByUserId" parameterType="int" resultMap="BaseResultMap">
+  		SELECT 
+		user.*,
+		role.*
+	FROM
+		user INNER JOIN userRoleRln rln ON user.userId = rln.userId
+		INNER JOIN role ON role.roleId = rln.roleId
+	WHERE
+		user.userId = #{userId}
+  </select>
+
+</mapper>
