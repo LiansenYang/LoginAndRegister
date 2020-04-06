@@ -40,5 +40,13 @@
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-
+	
+	<!--拦截器，拦截未登录-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/login"/>
+			<bean class="com.yangLs.interceptor.LoginCheckInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
