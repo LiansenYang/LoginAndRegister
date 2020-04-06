@@ -122,6 +122,21 @@
           <artifactId>log4j</artifactId>
           <version>${log4j.version}</version>
       </dependency>
+      
+      
+      <!-- 测试  -->
+      <dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+        <version>${springframework.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.0.1</version>
+	    <scope>provided</scope>
+	</dependency>        
+	
   </dependencies>
   
   
