@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,23 +12,30 @@
 <body>
 
 <table class="table table-bordered">
-	<caption>用户信息</caption>
+	<caption>边框表格布局</caption>
 	<thead>
 		<tr>
-			<th>用户ID</th>
-			<th>用户名</th>
-			<th>手机号</th>
-			<th>email</th>
+			<th>名称</th>
+			<th>城市</th>
+			<th>邮编</th>
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${requestScope.users}" var="user">
-			<tr>
-				<td>${user.userid}</td>
-				<td>${user.username}</td>
-				<td>${user.phoneno}</td>
-				<td>${user.email}</td>
-		</c:forEach>
+		<tr>
+			<td>Tanmay</td>
+			<td>Bangalore</td>
+			<td>560001</td>
+		</tr>
+		<tr>
+			<td>Sachin</td>
+			<td>Mumbai</td>
+			<td>400003</td>
+		</tr>
+		<tr>
+			<td>Uma</td>
+			<td>Pune</td>
+			<td>411027</td>
+		</tr>
 	</tbody>
 </table>
 

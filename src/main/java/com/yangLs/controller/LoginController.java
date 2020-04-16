@@ -27,8 +27,11 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = {"/","/login"},method = RequestMethod.GET)
-	public String toLogin(Model model) {
+	public String toLogin(Model model,HttpServletRequest request) {
 		model.addAttribute("userForm", new UserForm());
+		if(request.getSession().getAttribute(Constants.USER_SESSION) != null) {
+			return "redirect:/user/getAllUser";
+		}
 		return "framework/login";
 	}
 	
@@ -51,7 +54,8 @@ public class LoginController {
 			model.addAttribute("msg", "用户名密码不存在！请重新登录");
 			return "framework/login";
 		}
-		return "framework/index";
+//		return "framework/index";
+		return "redirect:/user/getAllUser";
 	}
 
 }

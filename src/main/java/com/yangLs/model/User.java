@@ -1,11 +1,17 @@
 package com.yangLs.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
     private Integer userid;
 
     private String username;
 
     private String password;
+
+    private Integer phoneno;
+
+    private String email;
 
     public Integer getUserid() {
         return userid;
@@ -29,5 +35,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public Integer getPhoneno() {
+        return phoneno;
+    }
+
+    public void setPhoneno(Integer phoneno) {
+        this.phoneno = phoneno;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 }

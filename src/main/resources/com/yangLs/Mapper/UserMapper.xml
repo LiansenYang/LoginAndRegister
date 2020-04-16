@@ -5,6 +5,8 @@
     <id column="userId" jdbcType="INTEGER" property="userid" />
     <result column="userName" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phoneNo" jdbcType="INTEGER" property="phoneno" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    userId, userName, password
+    userId, userName, password, phoneNo, email
   </sql>
   <select id="selectByExample" parameterType="com.yangLs.model.UserExample" resultMap="BaseResultMap">
     select
@@ -98,10 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.yangLs.model.User">
-    insert into user (userId, userName, password
-      )
-    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
-      )
+    insert into user (userId, userName, password, 
+      phoneNo, email)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phoneno,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yangLs.model.User">
     insert into user
@@ -115,6 +117,12 @@
       <if test="password != null">
         password,
       </if>
+      <if test="phoneno != null">
+        phoneNo,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userid != null">
@@ -125,6 +133,12 @@
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneno != null">
+        #{phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -146,6 +160,12 @@
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
+      <if test="record.phoneno != null">
+        phoneNo = #{record.phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +175,9 @@
     update user
     set userId = #{record.userid,jdbcType=INTEGER},
       userName = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR}
+      password = #{record.password,jdbcType=VARCHAR},
+      phoneNo = #{record.phoneno,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +191,21 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="phoneno != null">
+        phoneNo = #{phoneno,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
     </set>
     where userId = #{userid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yangLs.model.User">
     update user
     set userName = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
+      password = #{password,jdbcType=VARCHAR},
+      phoneNo = #{phoneno,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
 </mapper>

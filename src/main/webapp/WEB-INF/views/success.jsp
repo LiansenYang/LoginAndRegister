@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	成功了！！！
+	成功了！！！<br/>
+	SessionID:<%=session.getId() %>
 </body>
 </html>
